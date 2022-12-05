@@ -1,6 +1,6 @@
 # Pragma Module Template
 
-This is a template repository for modules for the Pragma Game Engine. If you want to create your own custom binary module, you can click on the [**Use this template**](https://github.com/Silverlan/test_tmplr/generate) button above to do so.
+This is a template repository for modules for the Pragma Game Engine. If you want to create your own custom binary module, you can click on the [**Use this template**](https://github.com/Silverlan/pr_module_template/generate) button above to do so.
 
 Once the repository has been generated, you will have to edit the values in `template_pragma_module.json`:
 * name: The name of the module as it will appear in the readme
