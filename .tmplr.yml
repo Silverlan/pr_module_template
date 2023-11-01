@@ -20,6 +20,13 @@ steps:
       fallback:
         prompt: "Where should the module be installed to? Default: \"modules/\""
 
+  - read: release_directory
+    from: env.release_directory
+    fallback:
+      from: git.release_directory
+      fallback:
+        prompt: "The directory that should be used for GitHub releases."
+
   - read: git_url
     from: env.git_url
     fallback:
