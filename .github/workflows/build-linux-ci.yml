@@ -43,7 +43,7 @@ jobs:
       - name: Create Release Files
         shell: bash
         run: |
-          if [ -n "${{ steps.module-info.outputs.release_directory }}" ]; then
+          if [ "${{ steps.module-info.outputs.release_directory }}" != "DEFAULT" ]; then
             mkdir -p "release/${{ steps.module-info.outputs.release_directory }}"
             cp -a "${{ steps.build-module.outputs.install-dir }}/${{ steps.module-info.outputs.release_directory }}." "release/${{ steps.module-info.outputs.release_directory }}"
           else

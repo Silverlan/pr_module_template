@@ -44,6 +44,10 @@ runs:
         module_name=$( getVal '.module_name' )
         install_directory=$( getVal '.install_directory' )
         release_directory=$( getVal '.release_directory' )
+        if [ -z "$release_directory" ]; then
+            # If release_directory is empty, assign the default value "DEFAULT"
+            release_directory="DEFAULT"
+        fi
 
         echo "name=$name" >> $GITHUB_OUTPUT
         echo "module_name=$module_name" >> $GITHUB_OUTPUT

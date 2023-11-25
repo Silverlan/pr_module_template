@@ -27,6 +27,7 @@ jobs:
         if: steps.template_exists.outputs.files_exists == 'true'
         run: npx tmplr && rm -fr .tmplr.yml && rm -fr .github/workflows/init.yml
         env:
+          # Note: The values must not be an empty string, due to a bug in the tmplr module
           name: ${{ steps.module-info.outputs.name }}
           module_name: ${{ steps.module-info.outputs.module_name }}
           install_directory: ${{ steps.module-info.outputs.install_directory }}
