@@ -28,7 +28,7 @@ runs:
         filepath=${{ inputs.filepath }}
         remFile=0
         if [ -z "$filepath" ]; then
-          curl https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$GITHUB_REF_NAME/.github/pragma_module_info.json -o pragma_module_info.json
+          curl https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/.github/pragma_module_info.json -o pragma_module_info.json
           filepath="pragma_module_info.json"
 
           remFile=1
