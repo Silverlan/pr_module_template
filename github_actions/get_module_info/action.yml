@@ -5,6 +5,10 @@ inputs:
     description: 'Path to json file'
     required: true
     default: ''
+  repo_access_token:
+    description: 'Token required to access the GitHub repository (if it is private).'
+    required: true
+    default: ''
 outputs:
   name:
     description: 'Pretty name of the module'
@@ -28,7 +32,11 @@ runs:
         filepath=${{ inputs.filepath }}
         remFile=0
         if [ -z "$filepath" ]; then
-          curl https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/.github/pragma_module_info.json -o pragma_module_info.json
+          token="${{ inputs.repo_access_token }}"
+          if [ -n "$token" ]; then
+            token="${token}@"
+          fi
+          curl https://${token}raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/.github/pragma_module_info.json -o pragma_module_info.json
           filepath="pragma_module_info.json"
 
           remFile=1
