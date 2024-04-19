@@ -9,6 +9,10 @@ inputs:
     description: 'Token required to access the GitHub repository (if it is private).'
     required: true
     default: ''
+  repository:
+    description: 'The target repository from which to get the module info.'
+    required: true
+    default: '${{ github.repository }}/${{ github.ref_name }}'
 outputs:
   name:
     description: 'Pretty name of the module'
@@ -36,7 +40,7 @@ runs:
           if [ -n "$token" ]; then
             token="${token}@"
           fi
-          curl https://${token}raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/.github/pragma_module_info.json -o pragma_module_info.json
+          curl https://${token}raw.githubusercontent.com/${{ inputs.repository }}/.github/pragma_module_info.json -o pragma_module_info.json
           filepath="pragma_module_info.json"
 
           remFile=1
