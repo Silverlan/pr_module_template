@@ -3,6 +3,10 @@ on:
   push:
     paths:
       - template_pragma_module.json
+
+permissions:
+  contents: write
+
 jobs:
   build:
     if: github.repository != 'Silverlan/pr_module_template'
