@@ -13,6 +13,13 @@ steps:
       fallback:
         prompt: "Enter the module name, starting with the prefix \"pr_\"."
 
+  - read: module_type
+    from: env.module_type
+    fallback:
+      from: git.module_type
+      fallback:
+        prompt: "Enter the module type. Available options are: \"shared\", \"client\", \"server\". Default: \"shared\""
+
   - read: install_directory
     from: env.install_directory
     fallback:
