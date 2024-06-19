@@ -21,6 +21,14 @@ jobs:
         with:
           filepath: './template_pragma_module.json'
 
+      - name: Check If Template Filled In
+        id: check-template-filled-in
+        run: |
+          if [ "${{ steps.module-info.outputs.name }}" == "Project Name" ]; then
+            echo "Module name has not been changed, cancelling initialization. Please edit 'template_pragma_module.json' and push your changes."
+            exit 1
+          fi
+
       - id: template_exists
         name: Check template
         uses: andstor/file-existence-action@v1
