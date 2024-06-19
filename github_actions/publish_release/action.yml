@@ -43,7 +43,7 @@ runs:
           prerelease: false
 
       - name: Publish Windows Release
-        uses: pyTooling/Actions/releaser/composite@main
+        uses: Silverlan/Releaser/releaser/composite@main
         with:
           tag: "v${{ inputs.version }}"
           rm: true
@@ -51,7 +51,7 @@ runs:
           files: ${{ steps.windows-version.outputs.filename }}
             
       - name: Publish Linux Release
-        uses: pyTooling/Actions/releaser/composite@main
+        uses: Silverlan/Releaser/releaser/composite@main
         with:
           tag: "v${{ inputs.version }}"
           token: ${{ inputs.token }}
