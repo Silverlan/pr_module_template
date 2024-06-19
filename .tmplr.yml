@@ -50,8 +50,8 @@ steps:
 
   - copy: README.tmpl.md
     to: README.md
-  - copy: CMakeInstall.txt.tmpl
-    to: CMakeInstall.txt
+  - copy: Install.cmake.tmpl
+    to: Install.cmake
   - copy: src/pr_module.cpp.tmpl
     to: src/pr_module.cpp
   - copy: .github/pragma_module_info.json.tmpl
@@ -62,7 +62,7 @@ steps:
     to: examples/ex_load_pragma_module.lua
 
   - remove: README.tmpl.md
-  - remove: CMakeInstall.txt.tmpl
+  - remove: Install.cmake.tmpl
   - remove: src/pr_module.cpp.tmpl
   - remove: .github/pragma_module_info.json.tmpl
   - remove: CMakeLists.txt.tmpl
