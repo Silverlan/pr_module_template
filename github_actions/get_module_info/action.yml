@@ -20,6 +20,9 @@ outputs:
   module_name:
     description: 'Name of the module.'
     value: ${{ steps.json.outputs.module_name }}
+  module_type:
+    description: 'Type of the module.'
+    value: ${{ steps.json.outputs.module_type }}
   install_directory:
     description: 'Where the module should be installed to.'
     value: ${{ steps.json.outputs.install_directory }}
@@ -54,6 +57,7 @@ runs:
         }
         name=$( getVal '.name' )
         module_name=$( getVal '.module_name' )
+        module_type=$( getVal '.module_type' )
         install_directory=$( getVal '.install_directory' )
         release_directory=$( getVal '.release_directory' )
         if [ -z "$release_directory" ]; then
@@ -63,6 +67,7 @@ runs:
 
         echo "name=$name" >> $GITHUB_OUTPUT
         echo "module_name=$module_name" >> $GITHUB_OUTPUT
+        echo "module_type=$module_type" >> $GITHUB_OUTPUT
         echo "install_directory=$install_directory" >> $GITHUB_OUTPUT
         echo "release_directory=$release_directory" >> $GITHUB_OUTPUT
 
