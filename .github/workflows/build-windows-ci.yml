@@ -11,6 +11,6 @@ jobs:
       repository: '${{ github.repository }}'
       os: windows
     secrets:
-      repository_token: ${{ secrets.REPO_ACCESS_TOKEN }}
+      repository_token: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
