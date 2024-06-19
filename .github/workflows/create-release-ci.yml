@@ -1,4 +1,5 @@
 name: Create Stable Release
+
 on:
   workflow_dispatch:
     inputs:
@@ -8,18 +9,10 @@ on:
         type: string
 
 jobs:
-  build:
-    name: Publish Release
-    runs-on: ${{ matrix.config.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - os: ubuntu-24.04
-            name: "Ubuntu 24.04"
-    steps:
-      - name: Publish Release
-        uses: Silverlan/pr_module_template/github_actions/publish_release@main
-        with:
-          version: ${{ inputs.version }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+  call-workflow:
+    uses: Silverlan/pragma/.github/workflows/release-module.yml@main
+    if: github.repository != 'Silverlan/pr_module_template'
+    with:
+      version: '${{ inputs.version }}'
+    permissions:
+      contents: write
