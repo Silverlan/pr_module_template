@@ -48,6 +48,8 @@ runs:
 
           remFile=1
         fi
+        echo "Module Info:"
+        cat $filepath
         function getVal {
           val=$(cat $filepath | jq $1)
           temp="${val%\"}"
