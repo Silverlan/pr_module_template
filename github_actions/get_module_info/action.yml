@@ -40,10 +40,12 @@ runs:
         remFile=0
         if [ -z "$filepath" ]; then
           token="${{ inputs.repo_access_token }}"
+          authHeader=""
           if [ -n "$token" ]; then
             token="${token}@"
+            authHeader="-H \"Authorization: token ${token}\""
           fi
-          curl https://${token}raw.githubusercontent.com/${{ inputs.repository }}/.github/pragma_module_info.json -o pragma_module_info.json
+          curl $authHeader -H "Accept: application/vnd.github.v3.raw" -o pragma_module_info.json https://api.github.com/repos/${{ inputs.repository }}/contents/.github/pragma_module_info.json
           filepath="pragma_module_info.json"
 
           remFile=1
