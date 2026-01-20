@@ -56,16 +56,37 @@ steps:
     to: src/pr_module.cpp
   - copy: .github/pragma_module_info.json.tmpl
     to: .github/pragma_module_info.json
-  - copy: CMakeLists.txt.tmpl
-    to: CMakeLists.txt
   - copy: examples/ex_load_pragma_module.tmpl.lua
     to: examples/ex_load_pragma_module.lua
+
+  - write: |
+      module_type raw: {{ module_type }}
+      module_type_norm: {{ module_type | trim | lowercase }}
+      match_shared: {{ module_type | matches: "(?i)^shared$" }}
+      match_client: {{ module_type | matches: "(?i)^client$" }}
+      match_server: {{ module_type | matches: "(?i)^server$" }}
+    to: tmplr-debug.txt
+
+  - if:
+      eval: '{{ module_type | matches: server }}'
+    copy: CMakeLists.server.txt.tmpl
+    to: CMakeLists.txt
+    else:
+      if:
+        eval: '{{ module_type | matches: client }}'
+      copy: CMakeLists.client.txt.tmpl
+      to: CMakeLists.txt
+      else:
+        copy: CMakeLists.shared.txt.tmpl
+        to: CMakeLists.txt
 
   - remove: README.tmpl.md
   - remove: Install.cmake.tmpl
   - remove: src/pr_module.cpp.tmpl
   - remove: .github/pragma_module_info.json.tmpl
-  - remove: CMakeLists.txt.tmpl
+  - remove: CMakeLists.shared.txt.tmpl
+  - remove: CMakeLists.server.txt.tmpl
+  - remove: CMakeLists.client.txt.tmpl
   - remove: template_pragma_module.json
   - remove: examples/ex_load_pragma_module.tmpl.lua
   - remove: .gitignore

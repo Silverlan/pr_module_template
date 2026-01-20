@@ -1,16 +1,11 @@
 include(${CMAKE_SOURCE_DIR}/cmake/pr_common.cmake)
 
 set(PROJ_NAME {{ tmplr.module_name }})
-set(MODULE_TYPE {{ tmplr.module_type }})
 
 pr_add_module(${PROJ_NAME} "{{ tmplr.install_directory }}")
 
 pr_add_dependency(${PROJ_NAME} shared TARGET PUBLIC)
-if("${MODULE_TYPE}" STREQUAL "client")
-    pr_add_dependency(${PROJ_NAME} client TARGET PUBLIC)
-elseif("${MODULE_TYPE}" STREQUAL "server")
-    pr_add_dependency(${PROJ_NAME} server TARGET PUBLIC)
-endif()
+pr_add_dependency(${PROJ_NAME} client TARGET PUBLIC)
 
 pr_init_module(${PROJ_NAME})
 
