@@ -59,14 +59,6 @@ steps:
   - copy: examples/ex_load_pragma_module.tmpl.lua
     to: examples/ex_load_pragma_module.lua
 
-  - write: |
-      module_type raw: {{ module_type }}
-      module_type_norm: {{ module_type | trim | lowercase }}
-      match_shared: {{ module_type | matches: "(?i)^shared$" }}
-      match_client: {{ module_type | matches: "(?i)^client$" }}
-      match_server: {{ module_type | matches: "(?i)^server$" }}
-    to: tmplr-debug.txt
-
   - if:
       eval: '{{ module_type | matches: server }}'
     copy: CMakeLists.server.txt.tmpl
